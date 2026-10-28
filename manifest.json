@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Manhwa Voice",
+  "version": "1.0.0",
+  "description": "Read English manhwa dialogue aloud from comic images using local OCR and speech synthesis.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Manhwa Voice",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "offscreen"
+  ],
+  "optional_host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "tesseract/worker.min.js",
+        "tesseract/tesseract-core-simd.wasm.js",
+        "tesseract/tesseract-core-simd.wasm",
+        "tesseract/tesseract-core.wasm.js",
+        "tesseract/tesseract-core.wasm",
+        "tesseract/lang/eng.traineddata.gz"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
